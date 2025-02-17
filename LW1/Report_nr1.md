@@ -268,9 +268,7 @@ For this laboratory work, Python was chosen as the programming language due to i
 - Implemented string validation to check if the FA accepts or rejects input strings.
 - Used a `Main` client class to execute and validate the system.
 
-![Alt text](Results.png)
-*Figure 1: Results*
-
+<img src="Results.png" alt="Figure 1: Description" width="500" height="300">
 
 ![Alt text](manual_conversion.jpg)
 *Figure 2: Manula Converting of Grammar to FA*
