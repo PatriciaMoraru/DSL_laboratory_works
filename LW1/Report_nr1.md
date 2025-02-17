@@ -270,10 +270,10 @@ For this laboratory work, Python was chosen as the programming language due to i
 
 <p align="center">
 <img src="Results.png" alt="Figure 1: Description" width="500" height="300">
-*Figure 1: Results*
 </p>
+*Figure 1: Results*
 
 <p align="center">
 <img src="manual_conversion.jpg" alt="Figure 2: Manual Converting of Grammar to FA" width="500" height="300">
-*Figure 2: Manual Converting of Grammar to FA*
 </p>
+*Figure 2: Manual Converting of Grammar to FA*
