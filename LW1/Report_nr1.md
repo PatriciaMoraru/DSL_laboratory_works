@@ -101,16 +101,16 @@ def generate_strings(self, num_strings=5, max_conv=10):
     return gen_str
 ```
 This function:
-•	Expands the start symbol (S) into valid words.
-•	Ensures only terminal symbols remain.
-•	Continuously generates until exactly 5 valid strings are obtained
+-	Expands the start symbol (S) into valid words.
+-	Ensures only terminal symbols remain.
+-	Continuously generates until exactly 5 valid strings are obtained
 
 ## 3. Converting Grammar to Finite Automaton
 
 The function to_finite_automaton() converts a regular grammar into a finite automaton by:
-•	Mapping non-terminals to FA states.
-•	Defining state transitions based on production rules.
-•	Identifying final states.
+-	Mapping non-terminals to FA states.
+-	Defining state transitions based on production rules.
+-	Identifying final states.
 
 ```python
 def to_finite_automaton(self):
