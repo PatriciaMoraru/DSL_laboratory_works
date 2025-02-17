@@ -1,4 +1,4 @@
-# Regular Grammar
+# Report nr.1: Regular Grammar
 
 ### Course: Formal Languages & Finite Automata
 ### Author: PATRICIA MORARU, FAF-233
