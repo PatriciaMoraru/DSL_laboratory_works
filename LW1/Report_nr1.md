@@ -268,12 +268,13 @@ For this laboratory work, Python was chosen as the programming language due to i
 - Implemented string validation to check if the FA accepts or rejects input strings.
 - Used a `Main` client class to execute and validate the system.
 
-<p align="center">
-<img src="Results.png" alt="Figure 1: Description" width="500" height="300">
-</p>
-*Figure 1: Results*
+<div style="text-align: center;">
+  <img src="Results.png" alt="Figure 1: Description" width="500" height="300">
+  <p><i>Figure 1: Results</i></p>
+</div>
 
-<p align="center">
-<img src="manual_conversion.jpg" alt="Figure 2: Manual Converting of Grammar to FA" width="500" height="300">
-</p>
-*Figure 2: Manual Converting of Grammar to FA*
+<div style="text-align: center;">
+  <img src="manual_conversion.jpg" alt="Figure 2: Manual Converting of Grammar to FA" width="500" height="300">
+  <p><i>Figure 2: Manual Converting of Grammar to FA</i></p>
+</div>
+
