@@ -5,21 +5,31 @@ def visualize_fa(fa, filename="finite_automaton"):
     dot = graphviz.Digraph(format='png')
     dot.attr(rankdir='LR', size='10')
 
-    # Add states
+    def format_state(state):
+        """Converts states (including frozensets) into readable names."""
+        if isinstance(state, frozenset):
+            return "_".join(sorted(state))
+        return str(state)
+
+    # adding the states
     for state in fa.Q:
+        clean_state = format_state(state)
         if state in fa.F:
-            dot.node(str(state), shape="doublecircle", color="green")  # Final states
+            dot.node(clean_state, shape="doublecircle", color="green")  # for final states
         else:
-            dot.node(str(state), shape="circle")
+            dot.node(clean_state, shape="circle")
 
-    # Add start state arrow
+    # start state arrow
     dot.node("start", shape="none", width="0")
-    dot.edge("start", str(fa.q0))
+    dot.edge("start", format_state(fa.q0))
 
-    # Add transitions
+    # transitions
     for (state, symbol), next_states in fa.Delta.items():
+        clean_state = format_state(state)
         for next_state in next_states:
-            dot.edge(str(state), str(next_state), label=symbol)
+            clean_next_state = format_state(next_state)
+            dot.edge(clean_state, clean_next_state, label=symbol)
 
     dot.render(filename, view=True)
     print(f"Finite Automaton graph saved as {filename}.png")
+

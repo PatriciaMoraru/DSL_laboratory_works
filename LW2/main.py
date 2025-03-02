@@ -1,8 +1,8 @@
 from finite_automaton import FiniteAutomaton, print_fa
-import grammar as gr
+from grammar import Grammar
 import visualization as vs
 
-# Define Grammar (Variant 20)
+# Define Variant 20 Grammar
 V_n = {"S", "A", "B", "C"}
 V_t = {"a", "b", "c", "d"}
 P = {
@@ -12,16 +12,18 @@ P = {
     "C": ["cA", "aS"]
 }
 S = "S"
-grammar = gr.Grammar(V_n, V_t, P, S)
+grammar = Grammar(V_n, V_t, P, S)
 
-# Convert Grammar to FA
+# 1. Classify Grammar
+print("\nGrammar Classification:")
+print(grammar.classify_grammar())
+
+# 2. Convert Grammar to Finite Automaton
 grammar_fa = grammar.to_finite_automaton()
 print("\nGrammar converted to Finite Automaton:")
-print_fa(grammar_fa)
-vs.visualize_fa(grammar_fa, "grammar_to_fa")
+print_fa(grammar_fa, formatted=True)
 
-
-# Define Finite Automaton (Variant 20)
+# 3. Define Variant 20 Finite Automaton
 Q = {"q0", "q1", "q2", "q3"}
 Sigma = {"a", "b", "c"}
 Delta = {
@@ -33,18 +35,14 @@ Delta = {
 }
 q0 = "q0"
 F = {"q3"}
-
 finite_automaton = FiniteAutomaton(Q, Sigma, Delta, q0, F)
 
-# Print and visualize FA
+# 4. Print FA Details
 print("\nOriginal Finite Automaton:")
-print_fa(finite_automaton)
-vs.visualize_fa(finite_automaton, "finite_automaton")
+print_fa(finite_automaton, formatted=True)
 
-
-# Convert FA to Regular Grammar
+# 5. Convert FA to Regular Grammar
 converted_grammar = finite_automaton.convert_fa_to_rg()
-
 print("\nFinite Automaton converted to Regular Grammar:")
 print(f"VN (Non-terminals): {converted_grammar.V_n}")
 print(f"VT (Terminals): {converted_grammar.V_t}")
@@ -53,8 +51,15 @@ print("Production Rules:")
 for lhs, rhs in converted_grammar.P.items():
     print(f"  {lhs} → {' | '.join(rhs)}")
 
+# 6. Check if FA is Deterministic
+print("\nFA Deterministic Check:")
+print("Deterministic" if finite_automaton.is_deterministic() else "Non-Deterministic")
 
+# 7. Convert NDFA to DFA
+dfa = finite_automaton.convert_ndfa_to_dfa()
 print("\nConverted DFA:")
-print_fa(dfa)
-vs.visualize_fa(dfa, "converted_dfa")
+print_fa(dfa, formatted=True)
 
+# 8. Visualizations
+vs.visualize_fa(finite_automaton, "finite_automaton")
+vs.visualize_fa(dfa, "converted_dfa")

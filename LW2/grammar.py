@@ -131,8 +131,14 @@ class Grammar:
                 Delta[(current_state, first_symbol)].add(next_state)
 
         # determining the final states
-        for vn in self.V_n:
-            if vn not in appearing_non_terminals:
-                F.add(state_mapping[vn])
+        for vn, prods in self.P.items():
+            for prod in prods:
+                # If a production directly leads to a terminal (A → d), its FA state is final
+                if len(prod) == 1 and prod in self.V_t:
+                    F.add(state_mapping[vn])
+
+        # Ensure there's at least one final state, but don't add 'qf' unnecessarily
+        if not F:
+            F.add(state_mapping[self.S])  # Default to start state only if no other finals exist
 
         return finite_automaton.FiniteAutomaton(Q, Sigma, Delta, "q0", F)

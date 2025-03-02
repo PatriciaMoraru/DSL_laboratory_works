@@ -64,14 +64,22 @@ class FiniteAutomaton:
 
     def convert_ndfa_to_dfa(self, visualize=False):
         """ Converts an NDFA to a DFA using the subset construction method. """
-        new_states = {frozenset([self.q0])}  # Start state as a set
+        new_states = {frozenset([self.q0])}  # start state as a set
         new_delta = {}  # DFA transition table
         new_final_states = set()
         unprocessed_states = [frozenset([self.q0])]
-        steps = []  # Store steps for visualization
+        steps = []  # storing steps for visualization
+
+        state_name_map = {frozenset([self.q0]): "q0"}  # assigning readable names (like "q0_q1")
+
+        def format_state(state_set):
+            """ Converts a frozenset into a readable string. """
+            return "_".join(sorted(state_set))
 
         while unprocessed_states:
             current_set = unprocessed_states.pop()
+            formatted_current = format_state(current_set)  # format DFA state properly
+
             for symbol in self.Sigma:
                 next_set = set()
                 for state in current_set:
@@ -80,36 +88,47 @@ class FiniteAutomaton:
 
                 if next_set:
                     next_set = frozenset(next_set)
-                    new_delta[(current_set, symbol)] = next_set
-                    if next_set not in new_states:
+                    formatted_next = format_state(next_set)
+
+                    if next_set not in state_name_map:
+                        state_name_map[next_set] = formatted_next
                         new_states.add(next_set)
                         unprocessed_states.append(next_set)
 
-                    steps.append((current_set, symbol, next_set))  # Store step
+                    new_delta[(formatted_current, symbol)] = {formatted_next}
+                    steps.append((formatted_current, symbol, formatted_next))
 
-        # Determine new final states
         for state_set in new_states:
             if any(s in self.F for s in state_set):
-                new_final_states.add(state_set)
+                new_final_states.add(state_name_map[state_set])
 
         if visualize:
-            vs.visualize_dfa_conversion(steps)  # Fix: Call directly from visualization module
+            vs.visualize_dfa_conversion(steps)
 
-        return FiniteAutomaton(new_states, self.Sigma, new_delta, frozenset([self.q0]), new_final_states)
+        return FiniteAutomaton(set(state_name_map.values()), self.Sigma, new_delta, "q0", new_final_states)
 
 
-def print_fa(fa):
+def print_fa(fa, formatted=False):
     """Prints the finite automaton in a readable format."""
     print("\nFinite Automaton Representation\n")
 
-    print(f"States (Q): {fa.Q}")
-    print(f"Alphabet (Σ): {fa.Sigma}")
+    print(f"States (Q): {set(fa.Q)}")
+    print(f"Alphabet (Σ): {set(fa.Sigma)}")
     print(f"Initial State (q0): {fa.q0}")
-    print(f"Final States (F): {fa.F}\n")
+    print(f"Final States (F): {set(fa.F)}\n")
 
-    print("Transitions (δ):")
+    print("Transitions (Delta):")
     for (state, symbol), next_states in fa.Delta.items():
-        for next_state in next_states:
-            print(f"  {state} -- {symbol} --> {next_state}")
+        # converts frozensets to strings for cleaner output
+        state = ", ".join(sorted(state)) if isinstance(state, frozenset) else state
+        next_states = {", ".join(sorted(ns)) if isinstance(ns, frozenset) else ns for ns in next_states}
+
+        if formatted:
+            print(f"('{state}', '{symbol}') -> {next_states}")
+        else:
+            for next_state in next_states:
+                print(f"  {state} -- {symbol} --> {next_state}")
 
     print("\nFA Transformation Completed!\n")
+
+
