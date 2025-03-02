@@ -234,7 +234,6 @@ Python was chosen due to its **efficiency in handling automata operations**, **f
 - **Implemented a check for FA determinism** to distinguish between **DFA and NDFA**.
 - **Designed a visualization system** using **Graphviz** to represent FA and DFA structures.
 - **Validated string acceptance** to determine whether a given input belongs to the language.
-- **Used a `Main` client class** to integrate and execute the transformations systematically.
 
 ## Results:
 ### Output from console
