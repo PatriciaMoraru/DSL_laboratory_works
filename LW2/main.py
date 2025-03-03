@@ -8,7 +8,7 @@ class Main:
 
     def run(self):
 
-        # 1. Define Variant 20 Grammar
+        # 1. Variant 20 Grammar
         V_n = {"S", "A", "B", "C"}
         V_t = {"a", "b", "c", "d"}
         P = {
@@ -29,7 +29,7 @@ class Main:
         print("\nGrammar converted to Finite Automaton:")
         print_fa(grammar_fa, formatted=True)
 
-        # 4. Define Variant 20 Finite Automaton
+        # 4. Variant 20 Finite Automaton
         Q = {"q0", "q1", "q2", "q3"}
         Sigma = {"a", "b", "c"}
         Delta = {
@@ -59,7 +59,7 @@ class Main:
 
         # 7. Check if FA is Deterministic
         print("\nFA Deterministic Check:")
-        print("✅ Deterministic" if finite_automaton.is_deterministic() else "Non-Deterministic")
+        print("Deterministic" if finite_automaton.is_deterministic() else "Non-Deterministic")
 
         # 8. Convert NDFA to DFA
         dfa = finite_automaton.convert_ndfa_to_dfa()

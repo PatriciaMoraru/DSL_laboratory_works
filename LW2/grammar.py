@@ -137,8 +137,8 @@ class Grammar:
                 if len(prod) == 1 and prod in self.V_t:
                     F.add(state_mapping[vn])
 
-        # Ensure there's at least one final state, but don't add 'qf' unnecessarily
+        # ensuring there's at least one final state, but don't adding 'qf' unnecessarily
         if not F:
-            F.add(state_mapping[self.S])  # Default to start state only if no other finals exist
+            F.add(state_mapping[self.S])  # default to start state only if no other finals exist
 
         return finite_automaton.FiniteAutomaton(Q, Sigma, Delta, "q0", F)
