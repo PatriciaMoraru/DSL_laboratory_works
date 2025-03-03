@@ -38,7 +38,7 @@ In this work, we implemented various operations related to finite automata, incl
 The implemented function `classify_grammar` within the `Grammar` class determines the classification of a given grammar according to the Chomsky hierarchy. It evaluates whether a grammar falls under one of the following types:
 
 - **Type 3 (Regular Grammar)**: The strictest form, requiring a single non-terminal on the left-hand side (LHS) and a right-hand side (RHS) that follows left-linear or right-linear rules.
-- **Type 2 (Context-Free Grammar, CFG)**: Requires a single non-terminal on the LHS and allows more flexible RHS structures.
+- **Type 2 (Context-Free Grammar, CFG)**: Requires a single non-terminal on the LHS and allows more flexible RHS structures (it can contain both left-linear and right-linear combinations).
 - **Type 1 (Context-Sensitive Grammar, CSG)**: Ensures that RHS is at least as long as the LHS, preventing shrinking productions.
 - **Type 0 (Unrestricted Grammar)**: The most general category, allowing arbitrary productions.
 
@@ -213,7 +213,7 @@ The function follows these key steps:
 4. **Rendering the Graph**:
    - The graph is saved as a **PNG file** and displayed.
 
-### **Code Implementation (Crucial Parts)**
+### **Code Implementation**
 
 ```python
 def visualize_fa(fa, filename="finite_automaton"):
