@@ -85,20 +85,23 @@ class Lexer:
         value = ""
 
         while not self.is_at_end() and self.peek() != '"':
-            if self.peek() == '\n':  # If a newline appears, it means the string is not closed
-                raise ValueError(f"Unterminated string literal at position {start}: {value}")
+            if self.peek() == '\n':  # If a newline appears, stop parsing
+                print(f"Error: Unterminated string at position {start}: \"{value}\"")
+                self.tokens.append({"type": "ERROR", "value": "Unterminated string"})
+                return  # Stop processing this token but continue lexing
 
             if self.peek() == '\\':  # Handle escape sequences
                 self.advance()
             value += self.advance()
 
-        if self.is_at_end():  # If no closing ", report an error
-            raise ValueError(f"Unterminated string literal at position {start}: {value}")
+        if self.is_at_end():  # If we reach the end and still no closing "
+            print(f"Error: Unterminated string at position {start}: \"{value}\"")
+            self.tokens.append({"type": "ERROR", "value": "Unterminated string"})
+            return  # Stop processing this token but continue lexing
 
         self.advance()  # Skip closing "
 
         # Split chemical formulas properly
-        import re
         parts = re.split(r'(\s*[\+\-\*/]\s*)', value)  # Keep operators separate
 
         for part in parts:
