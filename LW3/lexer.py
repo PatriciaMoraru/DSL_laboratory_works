@@ -74,8 +74,13 @@ class Lexer:
 
     def tokenize_number(self):
         start = self.position
-        while not self.is_at_end() and self.is_digit(self.peek()):
+        has_dot = False
+
+        while not self.is_at_end() and (self.is_digit(self.peek()) or (self.peek() == '.' and not has_dot)):
+            if self.peek() == '.':
+                has_dot = True
             self.advance()
+
         text = self.input[start:self.position]
         self.tokens.append({"type": "NUMBER_TOKEN", "value": text})
 
