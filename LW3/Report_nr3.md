@@ -124,11 +124,11 @@ The following function processes both **integers** and **floating-point numbers*
 ```python
 def tokenize_number(self):
     start = self.position
-    has_dot = False  # Track whether a decimal point has been encountered
-
+    has_dot = False  
+    
     while not self.is_at_end() and (self.is_digit(self.peek()) or (self.peek() == '.' and not has_dot)):
         if self.peek() == '.':
-            has_dot = True  # Allow only one decimal point
+            has_dot = True  
         self.advance()
 
     text = self.input[start:self.position]
