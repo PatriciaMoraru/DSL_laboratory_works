@@ -24,6 +24,20 @@ The lexer follows a deterministic approach, scanning through the text character 
 2. Implement a custom lexer to recognize ChemOrg DSL-specific tokens.
 3. Test the lexer by running ChemOrg DSL expressions and analyzing the tokenized output.
 
+# Grammar
+This is the reference grammar based on what the lexer was created:
+
+<div style="text-align: center;">
+  <img src="images/image 1.png" alt="Figure 1: Grammar" width="500" height="300">
+  <p><i>Figure 1: Results</i></p>
+</div>
+
+<div style="text-align: center;">
+  <img src="images/image 2.png" alt="Figure 2: Production Rules" width="700" height="200">
+  <p><i>Figure 1: Results</i></p>
+</div>
+
+
 # Implementation Description
 
 The implementation consists of a `Lexer` class that reads an input string and processes it into tokens. The lexer operates through the following steps:
