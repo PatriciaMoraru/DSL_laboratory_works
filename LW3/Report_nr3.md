@@ -250,6 +250,181 @@ def run_lexer():
         print_tokens(tokens)
 ```
 
+## Results
+The following examples demonstrate how the **ChemOrg DSL Lexer** processes various inputs and converts them into structured **tokens**. The results illustrate the lexer's ability to recognize **keywords, identifiers, functions, numbers, strings, operators, and punctuation**.
+
+### **Example 1: Variable Assignment and Function Calls**
+Description:
+
+1. The lexer correctly identifies the "let" keyword for variable declaration.
+2. It recognizes "H2O" as a string token and getMolecWeight as a function token.
+3. The "=" operator and punctuation tokens ("(", ")", ";") are correctly classified.
+
+```bash
+>>> let compound = "H2O";
+>>> let molarMass = getMolecWeight("H2O");
+>>> 
+
+Tokenized Output:
+KEYWORD_TOKEN: let
+IDENTIFIER_TOKEN: compound
+OPERATOR_TOKEN: =
+STRING_TOKEN: H2O
+EXP: ;
+KEYWORD_TOKEN: let
+IDENTIFIER_TOKEN: molarMass
+OPERATOR_TOKEN: =
+FUNCTION_TOKEN: getMolecWeight
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: H2O
+PUNCTUATION_TOKEN: )
+EXP: ;
+```
+
+### **Example 2: Function Nesting and String Processing**
+Description:
+1. The lexer successfully identifies nested function calls **(show(getVolume("O2")))**.
+2. The parentheses are classified as punctuation tokens.
+3. "O2" is processed as a string token inside the function call.
+```bash
+>>> show(getVolume("O2"));
+>>> 
+
+Tokenized Output:
+FUNCTION_TOKEN: show
+PUNCTUATION_TOKEN: (
+FUNCTION_TOKEN: getVolume
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: O2
+PUNCTUATION_TOKEN: )
+PUNCTUATION_TOKEN: )
+EXP: ;
+```
+
+### **Example 3: Conditional Statements and Chemical Reactions**
+Description:
+
+1. The lexer correctly identifies the if keyword, function calls, and block delimiters ("{", "}").
+2. The chemical formula (H2 + O2) is split into individual string tokens and an operator token (+).
+3. The assignment (=) and function call (resolve("H2 + O2")) are correctly tokenized.
+```bash
+>>> if (possible("H2 + O2")) {
+>>> 	result = resolve("H2 + O2");
+>>> }
+>>> 
+
+Tokenized Output:
+KEYWORD_TOKEN: if
+PUNCTUATION_TOKEN: (
+FUNCTION_TOKEN: possible
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: H2
+OPERATOR_TOKEN: +
+STRING_TOKEN: O2
+PUNCTUATION_TOKEN: )
+PUNCTUATION_TOKEN: )
+BLOCK_TOKEN: {
+IDENTIFIER_TOKEN: result
+OPERATOR_TOKEN: =
+FUNCTION_TOKEN: resolve
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: H2
+OPERATOR_TOKEN: +
+STRING_TOKEN: O2
+PUNCTUATION_TOKEN: )
+EXP: ;
+BLOCK_TOKEN: }
+```
+
+### **Example 4: Complex Conditional Statements with Function Calls**
+Description:
+
+1. The lexer correctly processes nested conditionals and function calls.
+2. It recognizes chemical formulas (C6H6 + O2), correctly splitting them into string tokens and operators (+).
+3. Variables (reaction, oxidizers) and their assignments (=) are correctly classified.
+4. The use of multiple {} blocks is handled accurately.
+```bash
+Tokenized Output:
+KEYWORD_TOKEN: if
+PUNCTUATION_TOKEN: (
+FUNCTION_TOKEN: possible
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: C6H6
+OPERATOR_TOKEN: +
+STRING_TOKEN: O2
+PUNCTUATION_TOKEN: )
+PUNCTUATION_TOKEN: )
+BLOCK_TOKEN: {
+KEYWORD_TOKEN: let
+IDENTIFIER_TOKEN: reaction
+OPERATOR_TOKEN: =
+FUNCTION_TOKEN: resolve
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: C6H6
+OPERATOR_TOKEN: +
+STRING_TOKEN: O2
+PUNCTUATION_TOKEN: )
+EXP: ;
+KEYWORD_TOKEN: if
+PUNCTUATION_TOKEN: (
+FUNCTION_TOKEN: getOxidixngs
+PUNCTUATION_TOKEN: (
+IDENTIFIER_TOKEN: reaction
+PUNCTUATION_TOKEN: )
+PUNCTUATION_TOKEN: )
+BLOCK_TOKEN: {
+KEYWORD_TOKEN: let
+IDENTIFIER_TOKEN: oxidizers
+OPERATOR_TOKEN: =
+FUNCTION_TOKEN: getReducings
+PUNCTUATION_TOKEN: (
+IDENTIFIER_TOKEN: reaction
+PUNCTUATION_TOKEN: )
+EXP: ;
+BLOCK_TOKEN: }
+BLOCK_TOKEN: }
+```
+
+### **Example 5: Conditional Logic with if-else Statements**
+Description:
+
+1. The lexer successfully identifies the if-else conditional structure.
+2. The function call isAcid("HCl") is correctly tokenized, treating "HCl" as a string token.
+3. String literals inside show() function calls are correctly recognized and categorized.
+4. Curly braces ({ }) are tokenized as block tokens, ensuring proper scope detection.
+```bash
+>>> if (isAcid("HCl")) {
+>>> 	show("This is an acid.");
+>>> } else {
+>>> 	show("This is not an acid.");
+>>> }
+>>> 
+
+Tokenized Output:
+KEYWORD_TOKEN: if
+PUNCTUATION_TOKEN: (
+FUNCTION_TOKEN: isAcid
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: HCl
+PUNCTUATION_TOKEN: )
+PUNCTUATION_TOKEN: )
+BLOCK_TOKEN: {
+FUNCTION_TOKEN: show
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: This is an acid.
+PUNCTUATION_TOKEN: )
+EXP: ;
+BLOCK_TOKEN: }
+KEYWORD_TOKEN: else
+BLOCK_TOKEN: {
+FUNCTION_TOKEN: show
+PUNCTUATION_TOKEN: (
+STRING_TOKEN: This is not an acid.
+PUNCTUATION_TOKEN: )
+EXP: ;
+BLOCK_TOKEN: }
+```
+
 ## Conclusions
 
 - The lexer successfully extracts **meaningful tokens** from ChemOrg DSL code.
