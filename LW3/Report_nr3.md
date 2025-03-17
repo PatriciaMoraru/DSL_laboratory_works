@@ -29,12 +29,12 @@ This is the reference grammar based on what the lexer was created:
 
 <div style="text-align: center;">
   <img src="images/image 1.png" alt="Figure 1: Grammar" width="500" height="300">
-  <p><i>Figure 1: Results</i></p>
+  <p><i>Figure 1: Grammar Reference </i></p>
 </div>
 
 <div style="text-align: center;">
-  <img src="images/image 2.png" alt="Figure 2: Production Rules" width="700" height="200">
-  <p><i>Figure 1: Results</i></p>
+  <img src="images/image 2.png" alt="Figure 2: Production Rules" width="500" height="300">
+  <p><i>Figure 1: Production Rules</i></p>
 </div>
 
 
