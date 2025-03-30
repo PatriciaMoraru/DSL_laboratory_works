@@ -171,8 +171,16 @@ This function addresses the **bonus requirement** from the lab:
 
 > "Write a function that will show the sequence of processing the regular expression — what you do first, second, and so on."
 
-Rather than simply generating output, this function **thinks aloud**. It takes the original pattern and walks through it **step-by-step**, explaining in plain language what part of the expression is being processed, in what order, and what it means.
+Rather than simply generating output, this function essentially thinks aloud. It acts like a guided interpreter, taking the original regular expression pattern and walking through it step-by-step, explaining in natural language what each component means, in which order it is encountered, and how it will be processed.
 
+In other words, this function doesn’t compute the final results — it tells a story of the parsing process, allowing the reader (or evaluator) to understand how the program logically makes sense of the expression.
+
+This is especially useful for:
+
+1. Debugging complex patterns. 
+2. Learning purposes, so students can visualize the structure of a regular expression. 
+3. Proving that the implementation is dynamic, not hardcoded. 
+4. Documenting behavior when generating combinations.
 ``` python
 def show_processing_steps(pattern):
     print(f"\n--- Processing Steps for: {pattern} ---")
@@ -283,4 +291,15 @@ STWYY ...
 
 
 # Conclusion
-This lab provided experience with parsing and expanding regular expressions programmatically, simulating what a regex engine would do. By setting repetition limits and tracing the step-by-step processing, we ensure that the logic is dynamic, not hardcoded. The implementation meets all core objectives and also completes the bonus task successfully.
+This laboratory assignment challenged us to not only understand regular expressions, but also to build a working engine that can parse, interpret, and expand them dynamically. The implementation avoids hardcoding and instead generalizes the parsing logic, making it reusable and extendable for various kinds of simplified regex patterns.
+
+We successfully achieved the following:
+1. Dynamically parsed expressions containing groups, character literals, and repetition operators. 
+2. Respected repetition limits (* as **0–5**, **+** as **1–5**, **^n** as **exact**). 
+3. Generated all valid combinations for each expression, validating correctness against provided examples. 
+4. Wrote an enhanced bonus function that explains the logic in sequence, providing transparency and interpretability.
+
+The most valuable part of this lab was learning how to simulate the behavior of a regex engine, breaking a complex abstract syntax into meaningful units, and then combining them to produce real output. This exercise not only deepened our understanding of regular languages and automata, but also reinforced the principles of clean parsing, modular code, and step-by-step logic construction.
+
+In conclusion, this lab has provided a strong foundation in regex-based computation and helped bridge theoretical knowledge with practical implementation — fulfilling all required and bonus objectives with clarity and structure.
+
