@@ -425,9 +425,9 @@ X_3 → BA
 
 Below are two screenshots that demonstrate the **manual step-by-step conversion** of the given grammar into Chomsky Normal Form (CNF). These visual representations are meant to show the theoretical understanding and how the rules were applied manually.
 
-![Manual CNF Conversion - Step 1](images/step1.jpg)
+![Manual CNF Conversion - Step 1](images/step1.jpg){ width=50% }
 
-![Manual CNF Conversion - Final CNF](images/step2.jpg)
+![Manual CNF Conversion - Final CNF](images/step2.jpg){ width=50% }
 
 ---
 
