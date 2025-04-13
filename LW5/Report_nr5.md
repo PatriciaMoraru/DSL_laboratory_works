@@ -426,11 +426,11 @@ X_3 → BA
 Below are two screenshots that demonstrate the **manual step-by-step conversion** of the given grammar into Chomsky Normal Form (CNF). These visual representations are meant to show the theoretical understanding and how the rules were applied manually.
 
 <p align="center">
-  <img src="images/step1.jpg" alt="Step 1" width="200"/>
+  <img src="images/step1.jpg" alt="Step 1" width="400"/>
 </p>
 
 <p align="center">
-  <img src="images/step2.jpg" alt="Step 2" width="200"/>
+  <img src="images/step2.jpg" alt="Step 2" width="400"/>
 </p>
 
 
